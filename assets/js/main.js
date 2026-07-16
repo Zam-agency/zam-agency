@@ -2,6 +2,11 @@
 (function () {
   "use strict";
 
+  // Active l'animation d'apparition UNIQUEMENT si ce script s'exécute.
+  // Sans cette classe, le CSS affiche tout le contenu par défaut (voir style.css) :
+  // si le JS est bloqué, lent à charger ou en erreur, rien ne doit rester invisible.
+  document.documentElement.classList.add("js-reveal");
+
   // Année dynamique dans le footer
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
