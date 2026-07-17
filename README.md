@@ -14,6 +14,9 @@ zam-agency-site/
 ├── contact.html                coordonnées + formulaire
 ├── robots.txt
 ├── sitemap.xml
+├── build.py                    régénère le footer partagé (voir plus bas)
+├── partials/
+│   └── footer.html             source unique du footer
 ├── assets/
 │   ├── css/style.css          feuille de style unique
 │   ├── js/main.js             menu mobile, header au scroll, animations
@@ -35,6 +38,17 @@ Les pages `/en/` et `/es/` existent déjà, avec la même structure de navigatio
 3. Retirez les lignes `Disallow: /en/` et `Disallow: /es/` du `robots.txt`.
 4. Ajoutez les URLs traduites dans `sitemap.xml`.
 
+## Le footer : une seule source, pas de fichier par page
+
+Le site reste du HTML pur (pas de moteur de templating), donc le footer est physiquement dupliqué dans les 6 pages FR — c'est nécessaire pour que chaque fichier .html reste lisible tel quel par les moteurs de recherche (rien ne dépend du JS pour le contenu, donc rien à perdre côté SEO).
+
+Pour ne pas avoir à modifier 6 fichiers à la main à chaque changement :
+1. Modifiez uniquement `partials/footer.html`.
+2. Lancez `python3 build.py` à la racine du projet.
+3. Le script recopie ce footer dans les 6 pages FR automatiquement.
+
+Ce script est un outil de confort pour vous, pas une dépendance du site : une fois exécuté, les fichiers `.html` livrés restent 100 % statiques.
+
 ## Contenu à vérifier avant mise en ligne
 
 L'ancien site zamagency.com étant hors ligne, certains éléments de contact ont été repris de sources publiques externes (annuaires professionnels) et **doivent être confirmés par vous avant publication** :
@@ -42,32 +56,9 @@ L'ancien site zamagency.com étant hors ligne, certains éléments de contact on
 - Téléphone : +33 1 47 23 60 67
 - Email : contact@zamagency.com
 
-Ces informations apparaissent dans `contact.html` et dans le footer de chaque page (recherchez `(à confirmer)`).
+Ces informations apparaissent dans `contact.html`, dans `partials/footer.html`, et dans le balisage structuré (JSON-LD `Organization`) en haut de `index.html` — recherchez `(à confirmer)` ou mettez à jour les 3 emplacements ensemble.
 
-## Formulaire de contact
+## SEO technique déjà en place
 
-Le formulaire dans `contact.html` est purement statique : sans backend, il ne peut pas envoyer d'email tel quel. Deux options simples, sans serveur à gérer :
-- [Formspree](https://formspree.io) : changez juste l'attribut `action` du `<form>`.
-- Netlify Forms (si vous hébergez sur Netlify) : ajoutez `data-netlify="true"` au `<form>`.
-
-## Mise en ligne (GitHub)
-
-Ce dossier n'est pas encore versionné avec Git. Pour l'initialiser vous-même :
-
-```bash
-cd zam-agency-site
-git init
-git add .
-git commit -m "Premier commit — site ZAM Agence de Talents"
-git remote add origin <URL_DE_VOTRE_REPO_GITHUB>
-git branch -M main
-git push -u origin main
-```
-
-Le site étant 100% statique, il peut être déployé tel quel sur GitHub Pages, ou simplement ouvert en local en double-cliquant sur `index.html`.
-
-## Personnalisation rapide
-
-- Couleurs, polices, espacements : variables CSS en haut de `assets/css/style.css` (bloc `:root`).
-- Logo : actuellement du texte stylé (`.logo-mark` dans le CSS) — remplaçable par une image dans `assets/images/logo/`.
-- Ajout d'un vrai favicon : déposer `favicon.ico` dans `assets/images/logo/`.
+- Titre et meta description propres à chaque page, longueur maîtrisée.
+- `cano
