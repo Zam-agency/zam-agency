@@ -52,8 +52,7 @@ Ce script est un outil de confort pour vous, pas une dépendance du site : une f
 ## Contenu à vérifier avant mise en ligne
 
 L'ancien site zamagency.com étant hors ligne, certains éléments de contact ont été repris de sources publiques externes (annuaires professionnels) et **doivent être confirmés par vous avant publication** :
-- Adresse : 15 rue Martel, 75010 Paris
-- Téléphone : +33 1 47 23 60 67
+- Adresse : 11 rue Victor Schoelcher, 75014 Paris
 - Email : contact@zamagency.com
 
 Ces informations apparaissent dans `contact.html`, dans `partials/footer.html`, et dans le balisage structuré (JSON-LD `Organization`) en haut de `index.html` — recherchez `(à confirmer)` ou mettez à jour les 3 emplacements ensemble.
