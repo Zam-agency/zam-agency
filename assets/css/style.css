@@ -415,6 +415,14 @@ body.nav-open .lang-switch {
     color: var(--white);
     white-space: nowrap;
   }
+
+  .main-nav a.nav-cta {
+    border: none;
+    padding: 0 0 4px;
+    color: var(--white);
+    font-size: 0.92rem;
+  }
+  .main-nav a.nav-cta::after { display: block; }
   .nav-wrap { justify-content: space-between; }
   .lang-switch { margin-left: 1rem; }
 }
